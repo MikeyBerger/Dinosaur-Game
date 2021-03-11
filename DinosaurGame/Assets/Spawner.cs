@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
 
         if (Timer >= Limit)
         {
-            Instantiate(Targets[RandTarget], Pos, Quaternion.identity);
+            Instantiate(Targets[RandTarget], Pos, transform.rotation);
             Timer = 0;
         }
 

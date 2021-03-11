@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawner
   - Destroyer
+  - Ground
   layers:
   - Default
   - TransparentFX
