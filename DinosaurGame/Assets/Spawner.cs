@@ -22,13 +22,13 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RandTarget = Random.Range(0, 2);
+        //RandTarget = Random.Range(0, 0);
         Vector3 Pos = Center + new Vector3(Random.Range(-Size.x, Size.x), Random.Range(-Size.y, Size.y), 0); //Allows for random position spawning
         
 
         if (Timer >= Limit)
         {
-            Instantiate(Targets[RandTarget], Pos, transform.rotation);
+            Instantiate(Targets[0], Pos, transform.rotation);
             Timer = 0;
         }
 

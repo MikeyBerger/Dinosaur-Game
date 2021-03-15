@@ -10,23 +10,30 @@ public class MeteorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       SK.Score = ThisScore;
+       SK = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>();
+       //SK.Score = ThisScore;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //SK.Score = ThisScore;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.tag == "Ground")
         {
+            
             Destroy(transform.gameObject);
-            ThisScore++;
+            //ThisScore++;
+            //SK.Score = ThisScore;
             //Add points
-            SK.Score = PlayerPrefs.GetInt("Score", SK.Score + 1);
+            //PlayerPrefs.SetInt("Score", SK.Score + 1);
+            //print(PlayerPrefs.GetInt("Score"));
+            //print(SK.Score);
+            SK.Score++;
         }
 
         if (collision.gameObject.tag == "Player")
