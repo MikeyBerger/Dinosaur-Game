@@ -14,6 +14,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private Rigidbody2D RB; //Allows player to collide
     //private Animator Anim;
 
+    //Delayed function that stops the dash movement
     IEnumerator StopDashing()
     {
         yield return new WaitForSeconds(DashTimer);
@@ -37,14 +38,14 @@ public class PlayerControllerV2 : MonoBehaviour
             RB.AddForce(new Vector2(DashSpeed, 0) * Time.deltaTime); //Dash to the right
             //RB.velocity = Vector2.zero;
             //IsDashing = false; //Stop dashing
-            StartCoroutine(StopDashing());
+            StartCoroutine(StopDashing()); //Calls "StopDashing"
         }
         else if (IsDashing && !FacingRight)
         {
             RB.AddForce(new Vector2(DashSpeed, 0) * Time.deltaTime * -1);
             //RB.velocity = Vector2.zero;
             //IsDashing = false; //Stop dashing
-            StartCoroutine(StopDashing());
+            StartCoroutine(StopDashing()); //Calls "StopDashing"
         }
 
         Flip(); //Calls the Flip function
@@ -56,14 +57,14 @@ public class PlayerControllerV2 : MonoBehaviour
         //Flips the player in the right direction
         if (Movement.x > 0 && !FacingRight || Movement.x < 0 && FacingRight)
         {
-            FacingRight = !FacingRight;
+            FacingRight = !FacingRight; //"FacingRight" is false
 
-            Vector3 Scale;
-            Scale = transform.localScale;
+            Vector3 Scale; //A Size
+            Scale = transform.localScale; //The size above equals the size of the player
 
-            Scale.x *= -1;
+            Scale.x *= -1; //The player's scale is multiplied by -1, causing the player to change directions
 
-            transform.localScale = Scale;
+            transform.localScale = Scale; //Sets the size to the direction above
         }
     }
 
@@ -71,7 +72,7 @@ public class PlayerControllerV2 : MonoBehaviour
     //Input for movement
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        Movement = ctx.ReadValue<Vector2>();
+        Movement = ctx.ReadValue<Vector2>(); //Assigns a value to Movement
     }
     //Input for dashing
     public void OnDash(InputAction.CallbackContext ctx)
@@ -81,5 +82,13 @@ public class PlayerControllerV2 : MonoBehaviour
             IsDashing = true;
         }
     }
-    #endregion
+    //Resets the High Score
+    public void OnDeletePlayerPrefs(InputAction.CallbackContext ctx)
+    {
+        if (ctx.phase == InputActionPhase.Performed)
+        {
+            PlayerPrefs.DeleteAll(); //Deletes high score
+        }
+        #endregion
+    }
 }

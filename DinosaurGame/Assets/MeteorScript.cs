@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MeteorScript : MonoBehaviour
 {
-    private ScoreKeeper SK;
-    public int ThisScore;
+    private ScoreKeeper SK; //The "ScoreKeeper" Class
+    public int ThisScore; //An integer for keeping score
 
     // Start is called before the first frame update
     void Start()
     {
-       SK = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>();
+       SK = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>(); //Assigns a value to SK
        //SK.Score = ThisScore;
     }
 
@@ -20,26 +21,20 @@ public class MeteorScript : MonoBehaviour
         //SK.Score = ThisScore;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //If the meteor collides with something
     {
 
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground") //If the collider is tagged "Ground"
         {
             
-            Destroy(transform.gameObject);
-            //ThisScore++;
-            //SK.Score = ThisScore;
-            //Add points
-            //PlayerPrefs.SetInt("Score", SK.Score + 1);
-            //print(PlayerPrefs.GetInt("Score"));
-            //print(SK.Score);
-            SK.Score++;
+            Destroy(transform.gameObject); //Destroy this object
+            SK.Score++; //Increase the score
         }
 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player") //If the collider is tagged "Player"
         {
-            Destroy(collision.gameObject);
-            //Go to game-over screen
+            Destroy(collision.gameObject); //Destroy the player
+            SceneManager.LoadScene(1); //Go to the game over scene
         }
     }
 }

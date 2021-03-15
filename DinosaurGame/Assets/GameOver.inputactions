@@ -1,0 +1,33 @@
+{
+    "name": "GameOver",
+    "maps": [
+        {
+            "name": "GameOverMap",
+            "id": "d94b2ce4-4209-46d5-804a-b3117e82480a",
+            "actions": [
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "00e3d8e9-e5ea-4bb6-9d1a-cb3f60d09c39",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "93dfad4c-7a77-45e4-aac5-ed7c63f7c7a4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
